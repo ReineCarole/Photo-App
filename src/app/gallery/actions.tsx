@@ -15,6 +15,7 @@ export async function setAsFavoriteAction(publicId: string) {
     } else {
       await cloudinary.v2.uploader.remove_tag("favorite", [publicId]);
     }
+    await new Promise((resolve) => setTimeout(resolve));
 
     revalidatePath("/gallery");
   } catch (error) {

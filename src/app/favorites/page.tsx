@@ -1,15 +1,10 @@
 import cloudinary from "cloudinary";
-import { CloudinaryImage } from "./cloudinary-image";
-import UploadButton from "./upload-button";
+import { CloudinaryImage } from "../gallery/cloudinary-image";
+import { SearchResult } from "../gallery/page";
 
-export type SearchResult = {
-  public_id: string;
-  tags: string[];
-};
-
-export default async function GalleryPage() {
+export default async function FavoritesPage() {
   const results = (await cloudinary.v2.search
-    .expression("resource_type:image")
+    .expression("resource_type:image AND tags=favorite")
     .with_field("tags")
     .sort_by("created_at", "desc")
     .max_results(15)
@@ -19,8 +14,7 @@ export default async function GalleryPage() {
     <section>
       <div className="flex flex-col gap-8">
         <div className="flex justify-between">
-          <h1 className="text-4xl font-bold">GALLERY</h1>
-          <UploadButton />
+          <h1 className="text-4xl font-bold">FAVORITES</h1>
         </div>
         <div className="grid grid-cols-4 gap-4">
           {results.resources.map((result) => (
