@@ -2,7 +2,8 @@
 import { Heart } from "lucide-react";
 import { CldImage } from "next-cloudinary";
 import { useTransition } from "react";
-import { setAsFavoriteAction } from "./actions";
+import { setAsFavoriteAction } from "../app/gallery/actions";
+import { ImageMenu } from "./image-menu";
 
 type CloudinaryImageProps = {
   publicId: string;
@@ -30,10 +31,11 @@ export function CloudinaryImage({
             setAsFavoriteAction(publicId);
           });
         }}
-        className={`absolute top-2 right-2 hover:text-red-500 cursor-pointer ${
+        className={`absolute top-2 left-2 hover:text-red-500 cursor-pointer ${
           isFavorited ? "fill-red-500 text-red-500" : "fill-none"
         }`}
       />
+      <ImageMenu />
     </div>
   );
 }

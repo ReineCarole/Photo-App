@@ -1,4 +1,4 @@
-import { CloudinaryImage } from "@/app/gallery/cloudinary-image";
+import { CloudinaryImage } from "@/components/cloudinary-image";
 import { SearchResult } from "@/app/gallery/page";
 
 const MAX_COLUMNS = 4;
